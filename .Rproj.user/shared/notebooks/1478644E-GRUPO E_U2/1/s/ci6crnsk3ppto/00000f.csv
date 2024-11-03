@@ -1,23 +1,14 @@
 "0","source('https://inkaverse.com/setup.r')"
-"2","[36mℹ[39m The [34mgooglesheets4[39m package is using
-  a cached token for
-  ]8;;mailto:evilchezbustamante@gmail.com[34mevilchezbustamante@gmail.com[39m]8;;.
+"2","[36mℹ[39m The [34mgooglesheets4[39m package is using a cached token for ]8;;mailto:evilchezbustamante@gmail.com[34mevilchezbustamante@gmail.com[39m]8;;.
 "
-"2","[36mℹ[39m The [34mgoogledrive[39m package is using a
-  cached token for
-  ]8;;mailto:7370404121@untrm.edu.pe[34m7370404121@untrm.edu.pe[39m]8;;.
+"2","[36mℹ[39m The [34mgoogledrive[39m package is using a cached token for ]8;;mailto:7370404121@untrm.edu.pe[34m7370404121@untrm.edu.pe[39m]8;;.
 "
 "0","url <- ""https://docs.google.com/spreadsheets/d/15r7ZwcZZHbEgltlF6gSFvCTFA-CFzVBWwg3mFlRyKPs/edit?gid=172957346#gid=172957346"""
 "0","gs <- url %>% "
 "0","  as_sheets_id()"
-"2","Auto-refreshing stale OAuth token.
-"
-"2","Auto-refreshing stale OAuth token.
-"
 "0","fb <- gs %>% "
 "0","  range_read(""fb"")"
-"2","[32m✔[39m Reading from
-  ""[36mLA MOLINA 2014 POTATO WUE (FB)[39m"".
+"2","[32m✔[39m Reading from ""[36mLA MOLINA 2014 POTATO WUE (FB)[39m"".
 "
 "2","[32m✔[39m Range '[33m'fb'[39m'.
 "
