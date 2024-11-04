@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Erik Vilchez, Jimmy Idrogo y Fernando Diaz">
+<meta name="author" content="Erik Vilchez, Jhinmy Hidrogo y Fernando Diaz">
 
 <title>GRUPO E</title>
 <style>
@@ -84,8 +84,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#importar-base-de-datos" id="toc-importar-base-de-datos" class="nav-link" data-scroll-target="#importar-base-de-datos"><span class="header-section-number">2</span> Importar base de datos</a></li>
   <li><a href="#variable-spad" id="toc-variable-spad" class="nav-link" data-scroll-target="#variable-spad"><span class="header-section-number">3</span> variable spad</a>
   <ul class="collapse">
-  <li><a href="#boxplot-para-spad_29" id="toc-boxplot-para-spad_29" class="nav-link" data-scroll-target="#boxplot-para-spad_29"><span class="header-section-number">3.1</span> boxplot para spad_29</a></li>
-  <li><a href="#modelo-lineal-mixto-para-spad_29" id="toc-modelo-lineal-mixto-para-spad_29" class="nav-link" data-scroll-target="#modelo-lineal-mixto-para-spad_29"><span class="header-section-number">3.2</span> modelo lineal mixto para spad_29</a></li>
+  <li><a href="#modelo-lineal" id="toc-modelo-lineal" class="nav-link" data-scroll-target="#modelo-lineal"><span class="header-section-number">3.1</span> modelo lineal</a></li>
+  <li><a href="#boxplot-para-spad_29" id="toc-boxplot-para-spad_29" class="nav-link" data-scroll-target="#boxplot-para-spad_29"><span class="header-section-number">3.2</span> boxplot para spad_29</a></li>
+  <li><a href="#modelo-lineal-mixto-para-spad_29" id="toc-modelo-lineal-mixto-para-spad_29" class="nav-link" data-scroll-target="#modelo-lineal-mixto-para-spad_29"><span class="header-section-number">3.3</span> modelo lineal mixto para spad_29</a></li>
   </ul></li>
   <li><a href="#variable-op_84" id="toc-variable-op_84" class="nav-link" data-scroll-target="#variable-op_84"><span class="header-section-number">4</span> variable op_84</a>
   <ul class="collapse">
@@ -123,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Erik Vilchez, Jimmy Idrogo y Fernando Diaz </p>
+             <p>Erik Vilchez, Jhinmy Hidrogo y Fernando Diaz </p>
           </div>
   </div>
     
@@ -188,6 +189,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="variable-spad" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="variable-spad"><span class="header-section-number">3</span> variable spad</h2>
+<section id="modelo-lineal" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="modelo-lineal"><span class="header-section-number">3.1</span> modelo lineal</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> spad_29 <span class="sc">~</span> bloque <span class="sc">+</span> riego <span class="sc">+</span> geno <span class="sc">+</span> riego<span class="sc">*</span>geno</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">data =</span> fb)</span>
@@ -233,8 +236,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="boxplot-para-spad_29" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="boxplot-para-spad_29"><span class="header-section-number">3.1</span> boxplot para spad_29</h3>
+</section>
+<section id="boxplot-para-spad_29" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="boxplot-para-spad_29"><span class="header-section-number">3.2</span> boxplot para spad_29</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fb, <span class="fu">aes</span>(<span class="at">x =</span> geno, <span class="at">y =</span> spad_29, <span class="at">colour =</span> riego)) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.colour =</span> <span class="st">"red"</span> , <span class="at">outlier.shape =</span> <span class="dv">16</span>, <span class="at">outlier.size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
@@ -252,8 +256,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="modelo-lineal-mixto-para-spad_29" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="modelo-lineal-mixto-para-spad_29"><span class="header-section-number">3.2</span> modelo lineal mixto para spad_29</h3>
+<section id="modelo-lineal-mixto-para-spad_29" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="modelo-lineal-mixto-para-spad_29"><span class="header-section-number">3.3</span> modelo lineal mixto para spad_29</h3>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> lme4<span class="sc">::</span><span class="fu">lmer</span>(<span class="at">formula =</span> spad_29 <span class="sc">~</span> riego <span class="sc">+</span> geno <span class="sc">+</span> riego<span class="sc">*</span>geno <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>bloque)</span>
@@ -590,8 +594,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ##              -2.460               -4.440               -5.300  
 ## optimizer (nloptwrap) convergence code: 0 (OK) ; 0 optimizer warnings; 1 lme4 warnings</code></pre>
 </div>
-<section id="comparacion-de-medias-para-spad_29" class="level4" data-number="3.2.1">
-<h4 data-number="3.2.1" class="anchored" data-anchor-id="comparacion-de-medias-para-spad_29"><span class="header-section-number">3.2.1</span> comparacion de medias para spad_29</h4>
+<section id="comparacion-de-medias-para-spad_29" class="level4" data-number="3.3.1">
+<h4 data-number="3.3.1" class="anchored" data-anchor-id="comparacion-de-medias-para-spad_29"><span class="header-section-number">3.3.1</span> comparacion de medias para spad_29</h4>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> spad_29 <span class="sc">~</span> bloque <span class="sc">+</span> riego <span class="sc">+</span> geno <span class="sc">+</span> riego<span class="sc">*</span>geno</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>              ,<span class="at">data =</span> fb)</span>
@@ -609,8 +613,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="duncan-para-spad_29" class="level4" data-number="3.2.2">
-<h4 data-number="3.2.2" class="anchored" data-anchor-id="duncan-para-spad_29"><span class="header-section-number">3.2.2</span> duncan para spad_29</h4>
+<section id="duncan-para-spad_29" class="level4" data-number="3.3.2">
+<h4 data-number="3.3.2" class="anchored" data-anchor-id="duncan-para-spad_29"><span class="header-section-number">3.3.2</span> duncan para spad_29</h4>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
@@ -751,8 +755,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="tukey-para-spad_29" class="level4" data-number="3.2.3">
-<h4 data-number="3.2.3" class="anchored" data-anchor-id="tukey-para-spad_29"><span class="header-section-number">3.2.3</span> tukey para spad_29</h4>
+<section id="tukey-para-spad_29" class="level4" data-number="3.3.3">
+<h4 data-number="3.3.3" class="anchored" data-anchor-id="tukey-para-spad_29"><span class="header-section-number">3.3.3</span> tukey para spad_29</h4>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -972,8 +976,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="emmeans-comparacion-de-medias" class="level4" data-number="3.2.4">
-<h4 data-number="3.2.4" class="anchored" data-anchor-id="emmeans-comparacion-de-medias"><span class="header-section-number">3.2.4</span> emmeans: comparacion de medias</h4>
+<section id="emmeans-comparacion-de-medias" class="level4" data-number="3.3.4">
+<h4 data-number="3.3.4" class="anchored" data-anchor-id="emmeans-comparacion-de-medias"><span class="header-section-number">3.3.4</span> emmeans: comparacion de medias</h4>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> lme4<span class="sc">::</span><span class="fu">lmer</span>(<span class="at">formula =</span> spad_29 <span class="sc">~</span> riego <span class="sc">+</span> geno <span class="sc">+</span> riego<span class="sc">*</span>geno <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>bloque)</span>

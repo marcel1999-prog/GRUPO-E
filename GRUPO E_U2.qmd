@@ -1,6 +1,6 @@
 ---
 title: "GRUPO E"
-author: "Erik Vilchez, Jimmy Idrogo y Fernando Diaz"
+author: "Erik Vilchez, Jhinmy Hidrogo y Fernando Diaz"
 format:
    html:
     toc: true
@@ -24,6 +24,7 @@ fb <- gs %>%
 str(fb)
 ```
 ## variable spad
+### modelo lineal
 ```{r}
 modelo <- aov(formula = spad_29 ~ bloque + riego + geno + riego*geno
               ,data = fb)
