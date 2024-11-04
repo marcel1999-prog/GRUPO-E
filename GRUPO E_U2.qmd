@@ -11,7 +11,7 @@ format:
 editor_options: 
   chunk_output_type: inline
 ---
-## somos estudiantes de octavo siclo del curso de programacion y analisis de datos, el contenido de la siguiente pagina web es el procesamiento de una base de tatos.
+## somos estudiantes de octavo siclo del curso de programación y analisis de datos, el contenido de la siguiente pagina web es el procesamiento de una base de datos teniendo en cuenta las variables clorofila, potencial osmotico en las plantas y contenido de agua en las plantas.
 
 ## Importar base de datos
 ```{r}
@@ -25,6 +25,8 @@ str(fb)
 ```
 ## variable spad
 ### modelo lineal
+#### Se ajusta un modelo de análisis de varianza (ANOVA) con la fórmula spad_29 ~ bloque + riego + geno + riego*geno.
+### En el resultado, el efecto del genotipo (geno) es altamente significativo (p < 0.001), mientras que los efectos de riego y la interacción riego:genono lo son, sugiriendo que genotiene un efecto importante en spad_29.
 ```{r}
 modelo <- aov(formula = spad_29 ~ bloque + riego + geno + riego*geno
               ,data = fb)
@@ -33,6 +35,11 @@ plot(modelo)
 ```
 
 ### boxplot para spad_29
+
+#### Un diagrama de caja gráfico se construye para visualizar la interacción entre riego y genotipo.
+#### Este gráfico muestra cómo varía la variable spad_29entre los diferentes genotipos bajo condiciones de sequía e irrigación, con los valores atípicos (son observaciones cuyos valores son muy diferentes a las otras observaciones del mismo grupo de datos) resaltados en color rojo.
+
+
 ```{r}
 ggplot(fb, aes(x = geno, y = spad_29, colour = riego)) +
   geom_boxplot(outlier.colour = "red" , outlier.shape = 16, outlier.size = 2) +
@@ -43,6 +50,8 @@ ggplot(fb, aes(x = geno, y = spad_29, colour = riego)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 ### modelo lineal mixto para spad_29
+#### Un diagrama de caja gráfico se construye para visualizar la interacción entre riego y genotipo.
+#### Este gráfico muestra cómo varía la variable spad_29entre los diferentes genotipos bajo condiciones de sequía e irrigación, con los valores atípicos (son observaciones cuyos valores son muy diferentes a las otras observaciones del mismo grupo de datos) resaltados en color rojo.
 ```{r}
 library(lme4)
 modelo <- lme4::lmer(formula = spad_29 ~ riego + geno + riego*geno + (1|bloque)
@@ -59,12 +68,13 @@ model <- remove_outliers(data = fb
               )
 model
 ```
-#### comparacion de medias para spad_29
+
 ```{r}
 modelo <- aov(formula = spad_29 ~ bloque + riego + geno + riego*geno
               ,data = fb)
 anova(modelo)
 ```
+
 #### duncan para spad_29
 ```{r}
 library(agricolae)
@@ -87,7 +97,7 @@ if (!is.null(duncan_riego_geno$groups)) {
   cat("No se puede graficar, no hay grupos formados.")
 }
 ```
-#### tukey para spad_29
+
 ```{r}
 library(agricolae)
 
@@ -106,6 +116,7 @@ if (!is.null(tukey_result$groups)) {
   cat("No se puede graficar, no hay grupos formados.")
 }
 ```
+
 ```{r}
 tukey_result
 library(tidyverse)
@@ -130,6 +141,9 @@ ggplot(grupos, aes(x = geno, y = spad_29, fill = riego)) +
             vjust = -0.5)  # Ajusta la posición vertical de las letras
 ```
 #### emmeans: comparacion de medias
+
+##### Se utiliza el paquete emmeans para obtener estimados marginales y hacer comparaciones de medios entre genoy riego.
+##### Los resultados muestran intervalos de confianza para cada genotipo en ambas condiciones de riego ( sequiae irrigado), así como los grupos que no presentan diferencias significativas.
 ```{r}
 library(lme4)
 modelo <- lme4::lmer(formula = spad_29 ~ riego + geno + riego*geno + (1|bloque)
@@ -165,8 +179,15 @@ ggplot(dtcm, aes(x = geno, y = emmean, fill = riego)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   ggtitle("Gráfico de barras: spad_29 por genotipo y riego")
 ```
+
 ## variable op_84
 ### modelo lineal para op_84
+
+#### Riego es el único factor con un efecto altamente significativo en op_84 (p < 0.001), lo cual indica que el tratamiento de riego influye fuertemente en los valores de op_84.
+#### Genotipo tiene un efecto marginalmente significativo (p ≈ 0.09), lo que sugiere una tendencia a afectar op_84, pero no es concluyente.
+#### Bloque y la interacción Riego x Genotipo no son significativos (p > 0.05), lo que indica que no tienen un impacto estadísticamente importante en `op_84
+
+
 ```{r}
 modelo <- aov(formula = op_84 ~ bloque + riego + geno + riego*geno
               ,data = fb)
@@ -174,6 +195,13 @@ anova(modelo)
 plot(modelo)
 ```
 ### boxplot para op_84
+
+#### Eje x: Representa los diferentes genotipos (geno), con colores que indican los distintos niveles de riego.
+####  Eje y: Muestra los valores de la variable de respuesta op_84.
+
+#### Las diferencias en la altura de las cajas indican que algunos genotipos tienen mejores rendimientos (op_84) bajo ciertos tratamientos de riego.
+#### Si las cajas de un mismo genotipo son de diferentes colores y muestran variaciones significativas en altura, esto sugiere que el riego influye en la respuesta del genotipo a op_84.
+
 ```{r}
 ggplot(fb, aes(x = geno, y = op_84, colour = riego)) +
   geom_boxplot(outlier.colour = "red" , outlier.shape = 16, outlier.size = 2) +
@@ -184,6 +212,12 @@ ggplot(fb, aes(x = geno, y = op_84, colour = riego)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 ### modelo lineal mixto para op_84
+
+#### El tratamiento de riego tiene un efecto significativo sobre op_84.
+#### Genotipo tiene un efecto marginalmente significativo, sugiriendo que existen diferencias en la respuesta de los genotipos, pero no son concluyentes.
+#### No se observa una interacción significativa entre riego y genotipo en cuanto a su efecto sobre op_84. Esto refuerza la idea de que el riego es el principal factor que afecta los resultados, mientras que la variabilidad entre genotipos es menos clara.
+
+
 ```{r}
 library(lme4)
 modelo <- lme4::lmer(formula = op_84 ~ riego + geno + riego*geno + (1|bloque)
@@ -201,6 +235,10 @@ model <- remove_outliers(data = fb
 model
 ```
 ### comparacion de medias para op_84
+#### El efecto del bloque no es significativo (p > 0.05), lo que sugiere que las variaciones en op_84 no dependen de las diferencias entre bloques.
+#### El efecto de genotipo es marginalmente significativo (p ≈ 0.09). Esto sugiere que puede haber diferencias en op_84 entre los distintos genotipos, pero no hay suficiente evidencia para considerarlo concluyente.
+#### La interacción entre riego y genotipo no es significativa (p > 0.05). Esto sugiere que el efecto del riego en op_84 no varía considerablemente entre diferentes genotipos.
+
 ```{r}
 modelo <- aov(formula = op_84 ~ bloque + riego + geno + riego*geno
               ,data = fb)
@@ -310,13 +348,20 @@ ggplot(dtcm, aes(x = geno, y = emmean, fill = riego)) +
 ## variable rwc_84
 
 ### modelo lineal para rwc_84
+
+#### Se ajusta un modelo de análisis de varianza (ANOVA) con la fórmula: rwc_84∼Bloque+r i e g o+g e n o+r i e g o: g e n o
+#### En el resultado, el efecto del genotipo es significativo (p < 0.05), indicando que los diferentes genotipos influyen en el contenido de agua. Sin embargo, los efectos de riego y la interacción entre riego y genotipo no son significativos, sugiriendo que el riego tiene un impacto limitado en esta variable. “Geno”
 ```{r}
 modelo <- aov(formula = rwc_84 ~ bloque + riego + geno + riego*geno
               ,data = fb)
 anova(modelo)
 plot(modelo)
 ```
+
 ### boxplot para rwc_84
+
+#### Se construye un diagrama de caja para visualizar la interacción entre riego y genotipo:
+#### Este gráfico permite observar cómo varía la variable entre los diferentes genotipos bajo condiciones de sequía e irrigación, destacando los valores atípicos en color rojo.rwc_84
 
 ```{r}
 ggplot(fb, aes(x = geno, y = rwc_84, colour = riego)) +
@@ -327,7 +372,12 @@ ggplot(fb, aes(x = geno, y = rwc_84, colour = riego)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
 ### modelo lineal mixto para rwc_84
+
+#### Se utiliza un modelo lineal mixto para ajustar considerando como efecto aleatorio:”rwc_84” ”bloque” rwc_84∼r i e g o+g e n o+r i e g o:g e n o+( 1∣ bloque )
+#### Este enfoque permite evaluar los efectos fijos de riego y genotipo mientras se controla la variabilidad entre bloques.
+
 ```{r}
 library(lme4)
 modelo <- lme4::lmer(formula = rwc_84 ~ riego + geno + riego*geno + (1|bloque)
@@ -345,12 +395,20 @@ model <- remove_outliers(data = fb
 model
 ```
 ### comparacion de medias para rwc_84
+
+#### Se aplica ANOVA para el modelo:
+#### Modelo<− a o v (fórmula=rwc_84∼Bloque+r i e g o+g e n o+r i e g o: g e n o, datos=f b) an ov a (m o d e l o) ' ''
+#### Luego se realizan pruebas post hoc (Duncan y Tukey) para identificar diferencias específicas entre grupos:
+
 ```{r}
 modelo <- aov(formula = rwc_84 ~ bloque + riego + geno + riego*geno
               ,data = fb)
 anova(modelo)
 ```
 #### tukey
+
+##### Es un  método adecuado para ajustes por comparaciones múltiples. Los resultados muestran medias agrupadas y diferencias significativas entre ellas.
+
 ```{r}
 library(agricolae)
 
@@ -379,6 +437,7 @@ grupos <- tukey_result$groups %>%
 str(grupos)
 ```
 #### grafico de barras para rwc_84
+
 ```{r}
 library(ggplot2)
 library(dplyr)
@@ -394,6 +453,10 @@ ggplot(grupos, aes(x = geno, y = rwc_84, fill = riego)) +
             vjust = -0.5)  # Ajusta la posición vertical de las letras
 ```
 #### emmens comparacion de medias para rwc_84
+
+##### Se utiliza el paquete para obtener estimados marginales y hacer comparaciones de medios entre genotipo y riego: “emmeans”
+##### Los resultados muestran intervalos de confianza para cada combinación de genotipo bajo ambas condiciones de riego (sequía e irrigado), así como los grupos que no presentan diferencias significativas.
+
 ```{r}
 library(lme4)
 modelo <- lme4::lmer(formula = rwc_84 ~ riego + geno + riego*geno + (1|bloque)
